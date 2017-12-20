@@ -225,10 +225,16 @@ set(sources ${sources} nc_json.hh)
 set(sources ${sources} nc_json.cc)
 set(sources ${sources} nc_api.hh)
 set(sources ${sources} nc_api.cc)
+set(sources ${sources} nc_iterate.hh)
+set(sources ${sources} nc_iterate.cc)
 set(sources ${sources} gason/src/gason.h)
 set(sources ${sources} gason/src/gason.cpp)
 add_library(nc_json STATIC ${sources})
 set(nc_json_LIB nc_json)
+
 add_executable(read_ncjson read_ncjson.cc)
 target_link_libraries (read_ncjson ${nc_json_LIB} ${LIB_DEP})
+
+add_executable(read_nc read_nc.cc)
+target_link_libraries (read_nc ${nc_json_LIB} ${LIB_DEP})
 
