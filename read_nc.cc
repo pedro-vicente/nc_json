@@ -15,7 +15,8 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  if (read_nc(argv[1]) < 0)
+  nc_read read_nc;
+  if (read_nc.read(argv[1]) < 0)
   {
     return 1;
   }
