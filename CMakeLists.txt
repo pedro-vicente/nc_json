@@ -12,7 +12,7 @@
 #-DSZIP_LIBRARY:FILE=<some_file>
 #-DCURL_LIBRARY:FILE=<some_file>
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.15)
 project (nc_json)
 include(CheckCXXCompilerFlag)
 include(CheckFunctionExists)
@@ -119,14 +119,14 @@ endif()
 #HDF5
 #/////////////////////////////////////////////////////////////////////////////////////
 
-find_library(HDF5_LIBRARY NAMES hdf5 ${find_opt})
+find_library(HDF5_LIBRARY NAMES hdf5 libhdf5_serial.a ${find_opt})
 if(NOT HDF5_LIBRARY)
   message(FATAL_ERROR "${color_red}hdf5 library not found${color_reset}")
 else()
   message("-- Found hdf5 library at: " ${HDF5_LIBRARY})
 endif()
 
-find_library(HDF5_HL_LIBRARY NAMES hdf5_hl ${find_opt})
+find_library(HDF5_HL_LIBRARY NAMES hdf5_hl libhdf5_serial_hl.a ${find_opt})
 if(NOT HDF5_HL_LIBRARY)
   message(FATAL_ERROR "${color_red}hdf5 high level library not found${color_reset}")
 else()
@@ -226,8 +226,8 @@ set(sources ${sources} nc_json.hh)
 set(sources ${sources} nc_json.cc)
 set(sources ${sources} nc_api.hh)
 set(sources ${sources} nc_api.cc)
-set(sources ${sources} nc_data.hh)
 set(sources ${sources} nc_read.hh)
+set(sources ${sources} nc_data.hh)
 set(sources ${sources} nc_read.cc)
 set(sources ${sources} gason/src/gason.h)
 set(sources ${sources} gason/src/gason.cpp)
